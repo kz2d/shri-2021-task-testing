@@ -6,7 +6,7 @@ import {ExampleApi,CartApi} from "../../src/client/api"
 import React from 'react';
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import {render} from "@testing-library/react"
+import {render, within} from "@testing-library/react"
 import { Application } from '../../src/client/Application';
 import { initStore } from '../../src/client/store';import "@testing-library/jest-dom";
 
@@ -192,8 +192,13 @@ const basename = '/hw/store';
             </Router>
         );
 
-const {getAllByRole}=render(application)
+const {getAllByRole,getByRole}=render(application)
 expect(getAllByRole('link').map((el)=>el.textContent)).toContain("Cart (1)")
-
-    })
+const table=getByRole('table')
+const description=within(table).getAllByRole('cell').map((el)=>el.textContent)
+    
+expect(description).toContain("2")
+expect(description).toContain("somethingIntresting")
+expect(description).toContain("$123456")
+})
 })
