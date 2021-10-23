@@ -1,3 +1,7 @@
+import { router } from "../../src/server/routes";
+
 describe("server/routes", () => {
-  it("");
+  it("open main page", () => {
+    expect(router.length).toBe(3);
+  });
 });
