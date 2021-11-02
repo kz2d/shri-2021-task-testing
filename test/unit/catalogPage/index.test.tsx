@@ -15,16 +15,21 @@ describe("open main page", () => {
     const { container, getByText } = RenderReactTemplate(
       Application,
       CreateMockData({
-        initialEntries: ["/cart"],
+        initialEntries: ["/catalog"],
+        products: [
+          {
+            color: "red",
+            id: 1,
+            name: "Name",
+            price: 123,
+            description: "description",
+            material: "material",
+          },
+        ],
       })
     );
     screen.logTestingPlaygroundURL(container);
-    const mainLink = getByText(/Example store/i);
-    expect(mainLink).toHaveAttribute("href", "/");
-    event.click(mainLink);
-    expect(getByText(/welcome to example store!/i).textContent).toEqual(
-      "Welcome to Example store!"
-    );
+    expect(getByText(/name/i).textContent).toEqual("Name");
 
     screen.logTestingPlaygroundURL(container);
   });

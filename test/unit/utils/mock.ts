@@ -1,23 +1,18 @@
 import { Product } from "../../../src/common/types";
 
-export function CreateMockData(data = {}): MockData {
+export function CreateMockData(data:Partial<MockData> = {}): MockData {
   console.log(
     {
-      history: {
-        initialEntries: ["/"],
-        initialIndex: 0,
-      },
+      initialEntries: ["/"],
       basename: "/hw/store",
       products: [],
       ...data,
-    }.history.initialEntries
+    }.initialEntries
   );
 
   return {
-    history: {
-      initialEntries: ["/"],
-      initialIndex: 0,
-    },
+    initialEntries: ["/"],
+    initialIndex: 0,
     basename: "/hw/store",
     products: [],
     ...data,
@@ -25,10 +20,8 @@ export function CreateMockData(data = {}): MockData {
 }
 
 export interface MockData {
-  history: {
-    initialEntries: string[];
-    initialIndex: number;
-  };
+  initialEntries: string[];
+  initialIndex: number;
   basename: string;
   products: Product[];
 }

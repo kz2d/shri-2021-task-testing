@@ -14,8 +14,8 @@ import { MockData } from "./mock";
 
 export default function RenderReactTemplate(Children:React.FC, mock:MockData) {
   let history = createMemoryHistory({
-    initialEntries: mock.history.initialEntries,
-    initialIndex: mock.history.initialIndex,
+    initialEntries: mock.initialEntries,
+    initialIndex: mock.initialIndex,
   });
 
   const basename = "/hw/store/" + mock.basename;
