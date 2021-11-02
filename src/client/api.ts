@@ -4,7 +4,7 @@ import { CartState, CheckoutFormData, CheckoutResponse, Product, ProductShortInf
 export class ExampleApi {
     constructor(private readonly basename: string) {
 
-    }
+   }
 
     async getProducts() {
         return await axios.get<ProductShortInfo[]>(`${this.basename}/api/products`);
