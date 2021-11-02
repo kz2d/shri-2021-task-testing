@@ -1,15 +1,6 @@
 import { Product } from "../../../src/common/types";
 
-export function CreateMockData(data:Partial<MockData> = {}): MockData {
-  console.log(
-    {
-      initialEntries: ["/"],
-      basename: "/hw/store",
-      products: [],
-      ...data,
-    }.initialEntries
-  );
-
+export function CreateMockData(data: Partial<MockData> = {}): MockData {
   return {
     initialEntries: ["/"],
     initialIndex: 0,

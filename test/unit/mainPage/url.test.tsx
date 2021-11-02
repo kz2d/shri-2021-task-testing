@@ -10,7 +10,7 @@ import { CreateMockData } from "../utils/mock";
 import RenderReactTemplate from "../utils/template";
 import event from "@testing-library/user-event";
 
-describe("open main page", () => {
+describe("main page", () => {
   it("open main page", () => {
     const { container, getByText } = RenderReactTemplate(
       Application,
