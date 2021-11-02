@@ -46,65 +46,65 @@ describe("cart page", () => {
     // const table = getByRole("table");
     // expect(within(container).getByRole("link", { name: /cart \(1\)/i }));
     // screen.logTestingPlaygroundURL(container);
-  });
+    //   });
 
-  //   it("cart top counter", async () => {
-  //     const { container, getByText, getAllByTestId } = RenderReactTemplate(
-  //       Application,
-  //       CreateMockData({
-  //         initialEntries: ["/catalog"],
-  //         products: [
-  //           {
-  //             color: "red",
-  //             id: 1,
-  //             name: "one Name",
-  //             price: 123,
-  //             description: "one description",
-  //             material: "one material",
-  //           },
-  //           {
-  //             color: "red",
-  //             id: 2,
-  //             name: "two Name",
-  //             price: 126,
-  //             description: "two description",
-  //             material: "two material",
-  //           },
-  //         ],
-  //       })
-  //     );
-  //     await AddTwoItemsToCart(container, getAllByTestId);
-  //     expect(within(container).getByRole("link", { name: /cart \(2\)/i }));
-  //   });
+    //   it("cart top counter", async () => {
+    //     const { container, getByText, getAllByTestId } = RenderReactTemplate(
+    //       Application,
+    //       CreateMockData({
+    //         initialEntries: ["/catalog"],
+    //         products: [
+    //           {
+    //             color: "red",
+    //             id: 1,
+    //             name: "one Name",
+    //             price: 123,
+    //             description: "one description",
+    //             material: "one material",
+    //           },
+    //           {
+    //             color: "red",
+    //             id: 2,
+    //             name: "two Name",
+    //             price: 126,
+    //             description: "two description",
+    //             material: "two material",
+    //           },
+    //         ],
+    //       })
+    //     );
+    //     await AddTwoItemsToCart(container, getAllByTestId);
+    //     expect(within(container).getByRole("link", { name: /cart \(2\)/i }));
+    //   });
 
-  it("cart add few items click", async () => {
-    const { container, getByText, getAllByTestId, getByRole } =
-      RenderReactTemplate(
-        Application,
-        CreateMockData({
-          initialEntries: ["/catalog"],
-          products: [
-            {
-              color: "red",
-              id: 1,
-              name: "one Name",
-              price: 123,
-              description: "one description",
-              material: "one material",
-            },
-            {
-              color: "red",
-              id: 2,
-              name: "two Name",
-              price: 126,
-              description: "two description",
-              material: "two material",
-            },
-          ],
-        })
-      );
-    console.log("fghhhhhhhhhhhhhhhhhhhhhhhhhhh");
-
+    //   it("cart add few items click", async () => {
+    //     const { container, getByText, getAllByTestId, getByRole } =
+    //       RenderReactTemplate(
+    //         Application,
+    //         CreateMockData({
+    //           initialEntries: ["/catalog"],
+    //           products: [
+    //             {
+    //               color: "red",
+    //               id: 1,
+    //               name: "one Name",
+    //               price: 123,
+    //               description: "one description",
+    //               material: "one material",
+    //             },
+    //             {
+    //               color: "red",
+    //               id: 2,
+    //               name: "two Name",
+    //               price: 126,
+    //               description: "two description",
+    //               material: "two material",
+    //             },
+    //           ],
+    //         })
+    //       );
+    //     console.log("fghhhhhhhhhhhhhhhhhhhhhhhhhhh");
+    event.click(getByText("catalog"));
     await AddTwoItemsToCart(container, getAllByTestId);
     event.click(within(container).getByRole("link", { name: /cart \(2\)/i }));
     screen.logTestingPlaygroundURL(container);
