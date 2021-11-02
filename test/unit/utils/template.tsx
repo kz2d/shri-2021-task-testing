@@ -8,11 +8,19 @@ import { render, within } from "@testing-library/react";
 import { initStore } from "../../../src/client/store";
 import "@testing-library/jest-dom";
 import events from "@testing-library/user-event";
-import { CartState, CheckoutFormData, CheckoutResponse, Product, ProductShortInfo } from "../../../src/common/types";
+import {
+  CartState,
+  CheckoutFormData,
+  CheckoutResponse,
+  Product,
+  ProductShortInfo,
+} from "../../../src/common/types";
 import { MockData } from "./mock";
 
-
-export default function RenderReactTemplate(Children:React.FC, mock:MockData) {
+export default function RenderReactTemplate(
+  Children: React.FC,
+  mock: MockData
+) {
   let history = createMemoryHistory({
     initialEntries: mock.initialEntries,
     initialIndex: mock.initialIndex,
@@ -26,7 +34,9 @@ export default function RenderReactTemplate(Children:React.FC, mock:MockData) {
 
   const application = (
     <Router history={history}>
-      <Provider store={store}><Children/></Provider>
+      <Provider store={store}>
+        <Children />
+      </Provider>
     </Router>
   );
 
@@ -34,19 +44,27 @@ export default function RenderReactTemplate(Children:React.FC, mock:MockData) {
 }
 
 class MockApi extends ExampleApi {
-  constructor(private readonly products:ProductShortInfo[]) {
-super('/')
- }
+  constructor(private readonly products: ProductShortInfo[]) {
+    super("/");
+  }
 
-   getProducts() {
-      return Promise.resolve({data:this.products} as AxiosResponse<ProductShortInfo[], any>)
+  getProducts() {
+    return Promise.resolve({ data: this.products } as AxiosResponse<
+      ProductShortInfo[],
+      any
+    >);
   }
 
   async getProductById(id: number) {
-      return Promise.resolve({data:this.products.filter((e)=>e.id)[0]} as AxiosResponse<Product, any>)   
+    return Promise.resolve({
+      data: this.products.filter((e) => e.id == id)[0],
+    } as AxiosResponse<Product, any>);
   }
 
   async checkout(form: CheckoutFormData, cart: CartState) {
-      return  Promise.resolve({data:{id:1}} as AxiosResponse<CheckoutResponse, any>) 
+    return Promise.resolve({ data: { id: 1 } } as AxiosResponse<
+      CheckoutResponse,
+      any
+    >);
   }
 }
