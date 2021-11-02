@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { screen } from "@testing-library/dom";
+import { screen, waitFor, within } from "@testing-library/dom";
 import "@testing-library/jest-dom";
 import events from "@testing-library/user-event";
 import React from "react";
@@ -11,8 +11,8 @@ import RenderReactTemplate from "../utils/template";
 import event from "@testing-library/user-event";
 
 describe("open main page", () => {
-  it("open main page", () => {
-    const { container, getByText } = RenderReactTemplate(
+  it("open main page", async () => {
+    const { container, getByText, getAllByTestId } = RenderReactTemplate(
       Application,
       CreateMockData({
         initialEntries: ["/catalog"],
@@ -28,8 +28,15 @@ describe("open main page", () => {
         ],
       })
     );
+    await waitFor(() => expect(screen.queryByText(/loading/i)).toBeNull());
+
     screen.logTestingPlaygroundURL(container);
-    expect(getByText(/name/i).textContent).toEqual("Name");
+    const item = getAllByTestId(1)[0];
+    expect(within(item).queryByText("Name")).toBeTruthy();
+    expect(within(item).queryByText("$123")).toBeTruthy();
+    expect(
+      item.getElementsByClassName("ProductItem-DetailsLink")[0]
+    ).toHaveAttribute("href", "/catalog/1");
 
     screen.logTestingPlaygroundURL(container);
   });
